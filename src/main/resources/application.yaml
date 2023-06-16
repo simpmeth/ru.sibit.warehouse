@@ -1,0 +1,15 @@
+logging:
+  level:
+    root: DEBUG
+server:
+  port: ${APP_PORT:8080}
+  max-http-header-size: 100KB
+spring:
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: jdbc:postgresql://localhost:5432/warehouse
+    username: postgres
+    password: postgres

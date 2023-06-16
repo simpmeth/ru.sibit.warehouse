@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head th:insert="~{head :: head}"/>
+<body>
+<head th:insert="~{menu :: menu}"/>
+<br/><br/>
+<h2>Поступление товара</h2>
+<br/><br/>
+<table id="grid"></table>
+<script type="text/javascript">
+        $(document).ready(function () {
+            var grid = $('#grid').grid({
+                dataSource: '/receiving/list',
+                columns: [
+                    { field: 'id', width: 56 , editable: false, hidden: true},
+                    { field: 'username', sortable: true },
+                    { field: 'fio', title: 'ФИО', sortable: true },
+                    { field: 'DateOfBirth', title: 'Date Of Birth', type: 'date', width: 150 }
+                ],
+                pager: { limit: 5 }
+            });
+        });
+
+
+</script>
+</body>
+</html>

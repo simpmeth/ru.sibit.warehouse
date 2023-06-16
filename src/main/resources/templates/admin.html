@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Log in with your account</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<div>
+    <a href="/">Главная</a>
+    <br/>
+    <br/>
+    <table>
+        <thead>
+        <th>ID</th>
+        <th>ФИО</th>
+        <th>Имя пользователя</th>
+        <th>Роли</th>
+        <th/>
+        </thead>
+        <tr
+                th:alt-title="${iStat.even}? 'even' : 'odd'"
+                th:each="user, iStat : ${allUsers}"
+                th:style="${iStat.odd}? 'font-weight: bold;'">
+            <td th:text="${user.id}"/>
+            <td th:text="${user.fio}"/>
+            <td th:text="${user.username}"/>
+            <td>
+                <span th:each="role : ${user.roles}">
+                    <label th:text="${role.name}"/>;<br/>
+                </span>
+            </td>
+            <td>
+                <form action="/admin/delete" method="post">
+                    <input name="userId" th:value="${user.id}" type="hidden"/>
+                    <input name="action" type="hidden" value="delete"/>
+                    <button type="submit">Удалить</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
